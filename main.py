@@ -223,6 +223,7 @@ def main():
             if player == "O" and not game_over and mode == 1:
                 ai_row, ai_col = ai_move(board, level)
                 board[ai_row][ai_col] = "O"
+                draw_o(ai_row, ai_col)
                 if check_winner(board, "O"):
                     game_over = True
                 elif is_board_full(board):
