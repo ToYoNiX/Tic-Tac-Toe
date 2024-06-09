@@ -201,7 +201,8 @@ def main():
                             game_over = True
                         else:
                             player = "O" if player == "X" else "X"
-            
+
+        isFinish = False
         if mode == 0:
             draw_button("Play vs AI", mode_button1, LINE_COLOR, WHITE)
             draw_button("Play vs Friend", mode_button2, LINE_COLOR, WHITE)
@@ -230,20 +231,27 @@ def main():
                     player = "X"
 
             if check_winner(board, "X"):
+                isFinish = True
                 print("Player X Wins!")
                 text = font.render("Player X Wins!", True, BLACK)
                 screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
             elif check_winner(board, "O"):
+                isFinish = True
                 print("Player O Wins!")
                 text = font.render("Player O Wins!", True, BLACK)
                 screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
             elif is_board_full(board):
+                isFinish = True
                 print("It's a draw!")
                 text = font.render("It's a draw!", True, BLACK)
                 screen.blit(text, (WIDTH // 2 - text.get_width() // 2, HEIGHT // 2 - text.get_height() // 2))
             
         pygame.display.update()
         pygame.time.Clock().tick(FPS)
+        
+        if isFinish:
+            sleep(3)
+            break
 
     return main()
 
